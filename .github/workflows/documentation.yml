@@ -23,15 +23,6 @@ jobs:
 
       - name: Create documentation with pdoc and place it in ./docs
         run : pdoc -o ./docs ./colorado_intro_ai
-
-      - name: List files in this dir
-        run : ls 
-
-      - name: List files in ./docs
-        run : ls ./docs
-
-      - name: Show contents of __index__.py at top level
-        run : cat ./docs/colorado_intro_ai.html
           
       - name: Push documentation to coloradointroai.github.io
         uses: cpina/github-action-push-to-another-repository@v1.4.1
