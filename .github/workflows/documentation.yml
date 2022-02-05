@@ -34,6 +34,6 @@ jobs:
           source-directory: 'docs/'
           destination-github-username: 'coloradointroai'
           destination-repository-name: 'coloradointroai.github.io'
-          user-email: caes5603@colorado.edu
+          user-email: ${{ secrets.EMAIL }}
           commit-message: Update on push
           target-branch: main
