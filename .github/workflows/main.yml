@@ -1,0 +1,45 @@
+name: deployment
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  Deploy-To-Doc-Repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      
+      - name: Get python
+        uses: actions/setup-python@v2
+        
+      - name: Install pdoc
+        run:  pip install pdoc
+
+      - name: Install numpy
+        run:  pip install numpy
+
+      - name: Install matplotlib
+        run:  pip install matplotlib
+
+      - name: Create documentation with pdoc and place it in ./docs
+        run : pdoc -o ./docs ./colorado_intro_ai
+
+      - name: List files in this dir
+        run : ls 
+
+      - name: List files in ./docs
+        run : ls ./docs
+          
+      - name: Push documentation to coloradointroai.github.io
+        uses: cpina/github-action-push-to-another-repository@v1.4.1
+        env: 
+          API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN}}
+        with:
+          source-directory: 'docs/'
+          destination-github-username: 'coloradointroai'
+          destination-repository-name: 'coloradointroai.github.io'
+          user-email: coloradointroai@gmail.com
+          commit-message: See ORIGIN_COMMIT from $GITHUB_REF
+          target-branch: main
+        
