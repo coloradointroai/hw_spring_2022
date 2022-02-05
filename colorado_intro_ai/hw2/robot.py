@@ -5,6 +5,8 @@ from colorado_intro_ai.hw2.pathSolver import PathSolver
 """
 Robot Class
 
+Test update
+
 """
 
 # Create Robot Class
