@@ -17,20 +17,8 @@ jobs:
       - name: Install pdoc
         run:  pip install pdoc
 
-      - name: Install numpy
-        run:  pip install numpy
-
-      - name: Install matplotlib
-        run:  pip install matplotlib
-
-      - name: Install ipyleaflet
-        run:  pip install ipyleaflet
-
-      - name: Install pandas
-        run:  pip install pandas
-
-      - name: Install geopy
-        run:  pip install geopy
+      - name: Install requirements
+        run:  pip install -r ./requirements.txt
 
       - name: Create documentation with pdoc and place it in ./docs
         run : pdoc -o ./docs ./colorado_intro_ai
