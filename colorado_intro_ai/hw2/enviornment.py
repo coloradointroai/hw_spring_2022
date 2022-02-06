@@ -27,16 +27,16 @@ class Environment:
         self.show_env(env_copy)
 
 
-    def show_env(self, env=None):
-        if(env == None):
-            env = self.env
+    def show_env(self, new_env):
+        #if(env == None):
+        #    env = self.env
 
         cmap = colors.ListedColormap(['yellow', 'teal', 'pink', 'grey', 'red'])
         bounds = [0,5,20,30,40,41]
         norm = colors.BoundaryNorm(bounds, cmap.N)
 
         fig, ax = plt.subplots()
-        ax.imshow(self.env, cmap=cmap, norm=norm)
+        ax.imshow(new_env, cmap=cmap, norm=norm)
         ax.grid(which='major', axis='both', linestyle='-', color='k', linewidth=2)
         ax.set_xticks(np.arange(-.5, 10, 1))
         ax.set_yticks(np.arange(-.5, 10, 1))

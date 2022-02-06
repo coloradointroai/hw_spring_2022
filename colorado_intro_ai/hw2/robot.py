@@ -34,7 +34,7 @@ class Robot:
 
     def show_env(self):
         """Displays the robots initial setup"""
-        self.env.show_env()
+        self.env.show_env(self.env.env)
 
     def show_env_and_path(self, path):
         self.env.show_env_and_path(path)
