@@ -30,6 +30,8 @@ class Robot:
         self.path_solver = PathSolver()
         # city data from https://github.com/jasperdebie/VisInfo/blob/master/us-state-capitals.csv
         self.state_dict = self.__get_states_data('../data/us.csv')
+        self.m = Map(center = (39, -97), zoom =4, layout=Layout(width='100%', height='800px'))
+        self.line = None
 
 
     def show_env(self):
@@ -62,7 +64,6 @@ class Robot:
 
     def show_city_connections_by_coordinates(self, city_order: list):
         """Displays a marker for each location and connects them with lines in the order they are passed in. The last element is connected to the first. """
-
         if len(city_order) < 2:
             print('show_city_connections input must be of len >=2')
             return
@@ -75,17 +76,33 @@ class Robot:
         )
 
         # Create a map
-        m = Map(center = (39, -97), zoom =4, layout=Layout(width='100%', height='800px'))
 
         # Add line end points in each state
         for center in city_order:
             marker = Marker(location=center, draggable=False)
-            m.add_layer(marker);
+            self.m.add_layer(marker);
+        # print(self.m.layers)
 
 
+        # print(line.model_id)
         # Add all line connections
-        m.add_layer(line)
-        display(m)
+        self.line = line
+        self.m.add_layer(self.line)
+        return self.m
+
+
+    def update_map(self, city_order: list):
+        """Displays a marker for each location and connects them with lines in the order they are passed in. The last element is connected to the first. """
+        if len(city_order) < 2:
+            print('update_map input must be of len >=2')
+            return
+        new_order = city_order + [city_order[0]]
+
+        # print('Change order!', new_order)
+        self.line.locations = new_order
+            
+
+        
 
 
     def __get_states_data(self, path: str):
