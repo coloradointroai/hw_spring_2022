@@ -11,7 +11,7 @@
 
 1. Clone this repository onto your local machine: [how clone works](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
    
-   * On Ubuntu 20.04 the command `git clone https://github.com/coloradointroai/hw_spring_2022.git` will make a copy of all files in this repo into where you call the `git clone` command  
+   * On Ubuntu 20.04 the command `git clone https://github.com/coloradointroai/hw-<your user name and remove the <> on both sides>.git` will make a copy of all files in this repo into where you call the `git clone` command  
 2. Install all required python package dependancies for `colorado_intro_ai` with the command `pip install -r requirements.txt` **We recommend that you call this function within a python [virtualenv](https://virtualenv.pypa.io/en/latest/installation.html)**
 
    * For installation see [virtualenv](https://virtualenv.pypa.io/en/latest/installation.html)
