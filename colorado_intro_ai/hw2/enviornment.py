@@ -6,12 +6,9 @@ import heapq
 import unittest
 
 class Environment:
-    def __init__(self, size: tuple = (10, 10), start: tuple = (0, 0),
-                 goal: tuple = (8, 9), seed: int = 0):
+    def __init__(self, size: tuple = (10, 10), seed: int = 0):
         np.random.seed(seed)
         self.size = size
-        self.start = start
-        self.goal = goal
         self.seed = seed
         self.env = self.__create_env()
         # need to set these in particular with special functions that they need to solve
@@ -21,9 +18,28 @@ class Environment:
 
     def show_env_and_path(self, path):
         env_copy = np.copy(self.env)
+
+        if(len(path) < 1):
+            # if your path solver functions should return [] or [], 0 when no solution is found
+            print("Empty path given to show_env_and_path()")
+            return
+        
         for cell in path:
             if(env_copy[cell[0]][cell[1]] >= 5 and env_copy[cell[0]][cell[1]] < 20):
                 env_copy[cell[0]][cell[1]] = 41
+
+
+        # color start node
+        start = path[0]
+        goal = path[-1]
+
+        # start node
+        env_copy[start[0]][start[1]] = 35        
+        
+        # goal node
+        env_copy[goal[0]][goal[1]] = 25
+
+
         self.show_env(env_copy)
 
 
@@ -46,14 +62,9 @@ class Environment:
         plt.show()
     def __create_env(self):
         env = np.random.rand(self.size[0], self.size[1]) * 20
-        #set robot start position, grey color spot
-        start = (0, 0)
-        env[start[0]][start[1]] = 31
-
-        #set goal position pink square
-        goal = (8, 9)
-        env[goal[0]][goal[1]] = 21
         return env
+
+
     def __set_edge_weights(self):
         # create dictionary
 
