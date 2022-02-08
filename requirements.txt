@@ -1,6 +1,6 @@
 geopy
 ipyleaflet
-ipywidgets
+ipywidgets>=7.6.0
 matplotlib
 numpy
 pandas
